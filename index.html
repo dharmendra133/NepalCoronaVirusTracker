@@ -1,0 +1,21 @@
+ <p id="apidatas"></p> 
+<script type="text/javascript">
+	async function fetchingAPI(index){
+		try{
+
+		const jsondata=await fetch('https://api.covid19api.com/summary');
+
+		const jsdata=await jsondata.json();
+		const NepalData=jsdata.Countries[index];
+		document.getElementById('apidatas').innerHTML=`Covid cases details of ${NepalData.Country}<br>
+			total cases is: ${NepalData.TotalConfirmed}<br>
+			total death is: ${NepalData.TotalDeaths}<br>
+			NewCase today is: ${NepalData.NewConfirmed}<br>
+			NewDeath today is: ${NepalData.NewDeaths}<br>
+			Stay safe`;
+		}
+		catch(error){console.log(error)};
+
+	}
+	fetchingAPI(124);
+</script>
